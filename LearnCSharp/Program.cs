@@ -1,12 +1,11 @@
-﻿using System;
-
-namespace LearnCSharp
+﻿namespace LearnCSharp
 {
 	class Program
 	{
 		static void Main(string[] args)
 		{
-			Variables.OverflowRules();
+			Variables.Parse();
+			Variables.Comments();
 		}
 	}
 }

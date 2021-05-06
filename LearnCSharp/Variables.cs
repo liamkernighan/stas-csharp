@@ -9,11 +9,11 @@ namespace LearnCSharp
 
 		private static int _intMax = int.MaxValue;
 
-		public int _nonStaticCount = 5;
+		public int Склад = 5;
 
 		#region region1
 
-		public static void VariablesDeclarationAndLiterals(string[] args)
+		public static void VariablesDeclarationAndLiterals()
 		{
 			var x = 1;
 			int x2 = 1;
@@ -48,31 +48,43 @@ namespace LearnCSharp
 
 		public static void VariableScopes()
 		{
+	
 			//Console.WriteLine(_count);
-			var _count = 2; // перекрываем count
+			var count = 2; // перекрываем count
 
 			{
 				//var _count = 5;
 				var count2 = 8;
 			}
 
+
 			//Console.WriteLine(count2);
 		}
 
 		public static void OverflowRules()
 		{
+			unchecked
+			{
+				var xx = uint.MinValue - 1;
+			}
+
 			// default checked
-			//bool areEqual = (int.MinValue - 1) == int.MaxValue;
-			//bool areEqual2 = (int.MaxValue + 1) == int.MinValue;
+			// bool areEqual = (uint.MinValue - 1) == int.MaxValue;
+			// bool areEqual2 = (int.MaxValue + 1) == int.MinValue;
 
 
-			var overflowed = _intMax + 1;
+			checked
+			{
+				var overflowed = _intMax + 1;
+			}
 		}
 
 		public static void AlgebraicOperations()
 		{
-			int int1 = 1;
-			long long1 = 1;
+			var int1 = 1;
+			long long1 = 1L;
+
+			var long2 = 1;
 
 			var var1 = int1 + long1;
 
@@ -82,11 +94,17 @@ namespace LearnCSharp
 			var int2 = int1++;
 			var int3 = ++int1;
 
+
 			var five1 = 5;
 			var five2 = 5;
 
 			var int4 = 5 + five1++;
 			var int5 = 5 + ++five2;
+
+			var int6 = 5 + five1++;
+			var int7 = 5 + ++five2;
+
+			var str = "Hello" + 5;
 
 			bool isTrue = true || true;
 		}
@@ -96,22 +114,36 @@ namespace LearnCSharp
 			int x = 1;
 			long lng = x;
 
-			//int int2 = lng;
+			int int2 = (int)lng;
 
-			double dbl = 2.0;
+			double dbl = 2.1;
 
-			//int int3 = dbl;
+			int int3 = (int)dbl;
 		}
 
 		#endregion
+
+		public int Add(int a, int b)
+		{
+			return a + b;
+		}
 
 		public void Test_NonStatic()
 		{
 			PrimitiveTypes_UpcastDownCast();
 
 			// Обращение к текущему экземпляру
-			_nonStaticCount++;
-			this._nonStaticCount++;
+			Склад++;
+			this.Склад++;
+		}
+
+		public void FillFromAnother(Variables another)
+		{
+			var Склад = 5;
+			this.Склад = another.Склад;
+
+			var number3 = new Variables();
+			number3.FillFromAnother(this);
 		}
 
 		public static void Test_Static_NonStatic()
@@ -120,10 +152,10 @@ namespace LearnCSharp
 			//_nonStaticCount++;
 
 			var variables = new Variables();
-			variables._nonStaticCount++;
+			variables.Склад++;
 
 			var var2 = new Variables();
-			var2._nonStaticCount--;
+			var2.Склад--;
 
 			Variables._count++; // Вот так можно вызвать из другого класса. Это как раз к вопросу об области видимости
 		}
@@ -133,14 +165,16 @@ namespace LearnCSharp
 			string str1 = " Hello ";
 
 			// Можешь загуглить, что такое культуры
+
+			// .ToUpperInvariant(), .ToUpper(),
 			string str2 = str1.Trim().ToUpperInvariant();
 
 			var str3 = "Goodbye".ToLowerInvariant();
 
-			var str4 = "Hello\n";
-			var str5 = "Hello\\n";
+			var str4 = "Hello\nWorld";
 
-			var str6 = @"Hello\n";
+			var str5 = "Hello\\n";
+			var str6 = @"Hello" + @"\n";
 
 			var str7 = @"Hello\n" + Environment.NewLine; // LF, CRLF
 
@@ -148,11 +182,21 @@ namespace LearnCSharp
 
 
 			var char1 = str1[0];
+
+
+
+			var russian = str7;
+			var char2 = russian[0];
+
+			byte russianP = (byte)char2;
+
 			bool areEqual1 = char1 == 'e';
 
 			var empty = string.IsNullOrEmpty("");
 			var empty2 = string.IsNullOrEmpty(" ");
 			var empty3 = string.IsNullOrWhiteSpace(" \n");
+
+			bool helloAreEqual = "hello" == "HELLO".ToLower();
 
 			int isMore = "a".CompareTo("A");
 
@@ -163,30 +207,35 @@ namespace LearnCSharp
 
 		public static void StringBuilder()
 		{
-			var sb = new StringBuilder();
-			sb.Append("A");
-			sb.Append("B");
+			StringBuilder stringBuilder = new StringBuilder();
+			stringBuilder.Append("A");
+			stringBuilder.Append("B");
 
-			string str = sb.ToString();
+			string str = stringBuilder.ToString();
 		}
 
 		public static void Parse()
 		{
-			var x = int.Parse("5");
+			var x = int.Parse(5.ToString());
 
-			var y = int.Parse("A");
+			//var y = int.Parse("A");
 
 			var parsed = int.TryParse("A", out var result);
 
-			var bool1 = bool.Parse("true");
+			//var bool1 = bool.TryParse("яйца true");
 
+			5.ToString();
+
+			var stringDate = DateTime.Today.AddDays(-1).AddMinutes(5).ToString("MMMM");
 
 		}
 
 		/// <summary>
-		/// Comments
+		/// Comments Module
 		/// </summary>
 		/// <exception cref="InvalidOperationException" />
+		/// <returns>void</returns>
+		
 		public static void Comments()
 		{
 			// Однострочный
