@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Text;
 
 namespace LearnCSharp
@@ -59,7 +58,7 @@ namespace LearnCSharp
 
 			//Console.WriteLine(count2);
 		}
-	
+
 		public static void OverflowRules()
 		{
 			// default checked
@@ -69,7 +68,7 @@ namespace LearnCSharp
 
 			var overflowed = _intMax + 1;
 		}
-	
+
 		public static void AlgebraicOperations()
 		{
 			int int1 = 1;
@@ -91,7 +90,7 @@ namespace LearnCSharp
 
 			bool isTrue = true || true;
 		}
-	
+
 		public static void PrimitiveTypes_UpcastDownCast()
 		{
 			int x = 1;
@@ -128,7 +127,7 @@ namespace LearnCSharp
 
 			Variables._count++; // Вот так можно вызвать из другого класса. Это как раз к вопросу об области видимости
 		}
-	
+
 		public static void StringOperations()
 		{
 			string str1 = " Hello ";
@@ -161,7 +160,7 @@ namespace LearnCSharp
 
 
 		}
-	
+
 		public static void StringBuilder()
 		{
 			var sb = new StringBuilder();
@@ -170,7 +169,7 @@ namespace LearnCSharp
 
 			string str = sb.ToString();
 		}
-	
+
 		public static void Parse()
 		{
 			var x = int.Parse("5");
@@ -183,7 +182,7 @@ namespace LearnCSharp
 
 
 		}
-	
+
 		/// <summary>
 		/// Comments
 		/// </summary>
