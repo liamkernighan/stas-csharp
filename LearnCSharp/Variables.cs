@@ -151,12 +151,6 @@ namespace LearnCSharp
 			_count++;
 			//_nonStaticCount++;
 
-			var variables = new Variables();
-			variables.Склад++;
-
-			var var2 = new Variables();
-			var2.Склад--;
-
 			Variables._count++; // Вот так можно вызвать из другого класса. Это как раз к вопросу об области видимости
 		}
 
